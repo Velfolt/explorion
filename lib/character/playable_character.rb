@@ -33,6 +33,5 @@ class PlayableCharacter < Character
   end
   
   def update
-
   end
 end

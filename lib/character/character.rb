@@ -4,11 +4,13 @@ require_relative 'arm'
 
 class Character < Chingu::GameObject
   trait :asynchronous
+  trait :bounding_box
   attr_reader :speed
   
   def initialize(options = {})
     super
     @image = Image['body.png']
+    cache_bounding_box
     
     @speed = 1
 
@@ -45,6 +47,11 @@ class Character < Chingu::GameObject
     y = vec.normalize[1] / vec.magnitude
     
     @angle = Math.atan2(y, x) / Math::PI * 180 - 90
+    
+    x2, y2 = project from: [@x, @y], angle: @angle, distance: speed
+    
+    x = 0 unless $world.collide_rect(self.bounding_box.inflate(-4, -4).move(x2 - @x, 0)).empty?
+    y = 0 unless $world.collide_rect(self.bounding_box.inflate(-4, -4).move(0, y2 - @y)).empty?
     
     @speed = speed
     

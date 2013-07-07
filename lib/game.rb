@@ -8,7 +8,7 @@ class Game < Chingu::Window
     super 1280, 720, false
     self.input = { escape: :exit }
     
-    push_game_state CharacterBuilder
+    push_game_state PlayState
   end
 end
 
