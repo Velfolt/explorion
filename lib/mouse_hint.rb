@@ -94,7 +94,7 @@ class MouseHint < GameObject
       $world.draw_rect(rect, Color::RED)
     elsif @messages[@message] == 'Destroy' && collides
       collides.each do |rect|
-        $world.draw_rect(rect, Color::BLUE)
+        $world.draw_rect(rect[2], Color::BLUE)
       end
     end
   end
