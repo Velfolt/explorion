@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+require 'rspec/autorun'
 
 require 'rubygems' rescue nil
 require 'bundler/setup'
@@ -8,6 +8,7 @@ MEDIA_PATH = File.join(File.expand_path(REAL_PATH), 'media')
 
 $LOAD_PATH.unshift REAL_PATH
 $LOAD_PATH.unshift MEDIA_PATH
+$LOAD_PATH.unshift File.join(REAL_PATH, 'lib')
 
 require 'chingu'
 include Gosu
@@ -20,7 +21,3 @@ Font.autoload_dirs.unshift File.join(MEDIA_PATH, 'fonts')
     
 $stderr.sync = $stdout.sync = true
 require 'matrix'
-
-# start game
-require 'lib/game'
-Game.new.show

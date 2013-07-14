@@ -11,5 +11,3 @@ class Game < Chingu::Window
     push_game_state PlayState
   end
 end
-
-Game.new.show
